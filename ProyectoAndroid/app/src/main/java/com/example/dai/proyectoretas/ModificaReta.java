@@ -32,6 +32,7 @@ public class ModificaReta extends AppCompatActivity {
         horaM=(EditText) findViewById(R.id.etHoraMod);
         folioM=(EditText)findViewById(R.id.etFolMod) ;
 
+        //Se llena el Spinner con las retas creadas por el usuario
         AdminSQLiteOpenHelper2 adminR= new AdminSQLiteOpenHelper2(this,"adminR",null,1);
         SQLiteDatabase db = adminR.getWritableDatabase();
         Bundle bundle= this.getIntent().getExtras();
@@ -48,13 +49,14 @@ public class ModificaReta extends AppCompatActivity {
         }
         ArrayAdapter adp= new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,elementos);
 
+        //En esta clase el metodo funciona excelente
         spReta.setAdapter(adp);
         db.close();
     }
 
 
     public void modReta(View v){
-
+        //Analogo a las modificaciones previas, el ususario puede cambiar datos de su reta.
         AdminSQLiteOpenHelper2 adminR=new AdminSQLiteOpenHelper2(this,"adminR", null, 1);
         SQLiteDatabase db=adminR.getWritableDatabase();
         String clave=folioM.getText().toString();

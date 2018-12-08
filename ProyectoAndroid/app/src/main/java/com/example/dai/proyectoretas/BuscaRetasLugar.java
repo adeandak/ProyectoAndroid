@@ -24,8 +24,15 @@ public class BuscaRetasLugar extends AppCompatActivity {
     }
 
     public void llenarSpinner(){
+        /*
+        Utiliza el lugar escrito como parametro en la pagina anterior para
+        buscar todas las retas del mismo.
+        Con un ArrayList llena un Spinner y muestra retas que hay para el lugar.
+         */
         int i=0;
         String ayuda=null;
+        //hay tantos Toast y variables extras por que lo usamos para encontrar el error.
+        //Al principio no creaba la db. Despues el problema fue con el String aux.
         try {
             AdminSQLiteOpenHelper2 adminR= new AdminSQLiteOpenHelper2(this,"adminR",null,1);
             i++;

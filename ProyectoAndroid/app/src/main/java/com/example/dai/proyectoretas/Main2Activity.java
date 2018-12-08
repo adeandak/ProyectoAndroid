@@ -23,6 +23,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
     public void consulta(View v){
+        //Regresa un toast con los datos del usuario que ingreso al sistema.
         AdminSQLiteOpenHelper1 adminJ= new AdminSQLiteOpenHelper1(this,"adminJ",null,1);
         SQLiteDatabase db = adminJ.getWritableDatabase();
 
@@ -55,14 +56,12 @@ public class Main2Activity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
+    /*
+    Los siguientes metodos utilizan Intent (para moverse entre paginas)
+    y Bundle(para mandar parametros)
+    para moverse entre las paginas
+    de la app.
+     */
     public void crear(View v){
         Intent intent = new Intent(this,CrearNuevaReta.class);
 
@@ -74,6 +73,7 @@ public class Main2Activity extends AppCompatActivity {
         intent.putExtras(b);
         startActivity(intent);
     }
+
     public void eliminar(View v){
         Intent intent = new Intent(this,EliminarReta.class);
         Bundle bundle= this.getIntent().getExtras();
@@ -97,13 +97,11 @@ public class Main2Activity extends AppCompatActivity {
 
     public void fifa(View v){
         Intent intent = new Intent(this, Fifa.class);
-
         startActivity(intent);
     }
 
     public void buscar(View v){
         Intent intent = new Intent(this, BuscaRetas.class);
-
         startActivity(intent);
     }
 

@@ -29,6 +29,9 @@
         <activity android:name=".BuscaRetasLugar" />
         <activity android:name=".Fifa" />
         <activity android:name=".BuscaRetasDeporte"></activity>
+
+
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

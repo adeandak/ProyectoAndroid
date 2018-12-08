@@ -45,6 +45,10 @@ public class CrearNuevaReta extends AppCompatActivity {
 
 
     public void agregarReta (View v){
+        /*
+        Para agregar la reta, recolectamos los datos de cada EditText (o del radioButton)
+        y los utilizamos para agregarlos a la tabla en la base de datos de SQLite
+         */
         try {
             AdminSQLiteOpenHelper2 adminR = new AdminSQLiteOpenHelper2(this, "adminR", null, 1);
             SQLiteDatabase db = adminR.getWritableDatabase();
@@ -59,7 +63,7 @@ public class CrearNuevaReta extends AppCompatActivity {
             Bundle bundle= this.getIntent().getExtras();
             String idUsu = bundle.get("idUsuario").toString();
 
-
+            //el content value es muy eficiente para agregar datos
             ContentValues registro = new ContentValues();
 
             registro.put("folio", idR);
@@ -92,14 +96,18 @@ public class CrearNuevaReta extends AppCompatActivity {
     }
 
     public void consultaReta(View v){
+        /*
+        Este metodo verifica que se hayan creado las retas a partir del folio
+         */
         try{
         AdminSQLiteOpenHelper2 adminR= new AdminSQLiteOpenHelper2(this,"adminR",null,1);
         SQLiteDatabase db=adminR.getWritableDatabase();
         String fol= consultaFolio.getText().toString();
 
-
+            //Se busca la reta en la base de datos
             Cursor fila=db.rawQuery("select folio,deporte,lugar,hora,idJugador from Reta where folio="+fol,null);
             if(fila.moveToFirst()){
+                //en caso de existir, regresa los datos
                 Toast.makeText(this,fila.getString(0)+fila.getString(1)+fila.getString(2)+fila.getString(3)+fila.getString(4),Toast.LENGTH_LONG).show();
             }
             else

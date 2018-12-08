@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/*
+Esta clase es analoga a CrearNuevaReta con la diferencia de que
+aqui se crean usuarios de los jugadores.
+Se utiliza un AdminAQLiteOpenHelper distinto.
+ */
 public class CrearUsuario extends AppCompatActivity {
     private EditText usu, contra, nom;
 

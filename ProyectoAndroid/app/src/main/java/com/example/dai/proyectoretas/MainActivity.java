@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         String idU= usuario.getText().toString();
         String conU=contra.getText().toString();
         try{
+            //Solo te deja entrar si exite un usuario y la contra es correcta.
             Cursor f=db.rawQuery("select contra from Jugador where id=" +idU,null);
             if(f.moveToFirst()){
                 String aux= f.getString(0);
@@ -38,16 +39,13 @@ public class MainActivity extends AppCompatActivity {
                     b.putString("session",usuario.getText().toString());
                     intent.putExtras(b);
                     startActivity(intent);
-
-
+                    //Aqui existe un usuario y la contra es correcta
                 }
                 else
                     Toast.makeText(this,"contra incorrecta",Toast.LENGTH_LONG).show();
-
             }
             else
                 Toast.makeText(this,"usuario incorrecto",Toast.LENGTH_LONG).show();
-
         }catch(Exception ex){
             Toast.makeText(this,"PROBLEMA"+ex,Toast.LENGTH_LONG).show();
         }
@@ -57,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void creaNueva(View v){
+        //Este intent te lleva a la pestana para crear un usuario nuevo
         Intent intent = new Intent(this, CrearUsuario.class);
         startActivity(intent);
     }

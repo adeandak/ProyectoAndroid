@@ -15,33 +15,41 @@ public class BuscaRetasDeporte extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+        Utiliza el deporte escrito como parametro en la pagina anterior para
+        buscar todas las retas del mismo.
+        Con un ArrayList llena un Spinner y muestra retas que hay para el deporte.
+         */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busca_retas_deporte);
         spReta=(Spinner)findViewById(R.id.spRetas);
         String ana;
         ArrayList<String> elementos= new ArrayList<String>();
 
+        try {
+            AdminSQLiteOpenHelper2 adminR = new AdminSQLiteOpenHelper2(this, "adminR", null, 1);
+            SQLiteDatabase db = adminR.getWritableDatabase();
+            Bundle bundle = this.getIntent().getExtras();
+            ana = bundle.get("dep").toString();
+            Toast.makeText(this, ana, Toast.LENGTH_LONG).show();
 
-        AdminSQLiteOpenHelper2 adminR= new AdminSQLiteOpenHelper2(this,"adminR",null,1);
-        SQLiteDatabase db = adminR.getWritableDatabase();
-        Bundle bundle= this.getIntent().getExtras();
-         ana= bundle.get("dep").toString();
-        Toast.makeText(this,ana,Toast.LENGTH_LONG).show();
 
+            //ArrayList<String> elementos= new ArrayList<String>();
+            Cursor fila = db.rawQuery("select folio,deporte,lugar,hora from Reta where deporte='Basquetbol'", null);
+            while (fila.moveToNext()) {
+                Toast.makeText(this, ana, Toast.LENGTH_LONG).show();
+                String concatena = "folio:" + fila.getString(0) + " /deporte: " + fila.getString(1)
+                        + " /lugar: " + fila.getString(2) + " /hora: " + fila.getString(3);
+                elementos.add(concatena);
+            }
 
-        //ArrayList<String> elementos= new ArrayList<String>();
-        Cursor fila=db.rawQuery("select folio,deporte,lugar,hora from Reta where deporte='Basquetbol'",null);
-        while (fila.moveToNext()){
-            Toast.makeText(this,ana,Toast.LENGTH_LONG).show();
-            String concatena="folio:"+fila.getString(0)+" /deporte: "+fila.getString(1)
-                    +" /lugar: "+fila.getString(2)+" /hora: "+fila.getString(3);
-            elementos.add(concatena);
-        }
-
-            ArrayAdapter adp= new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,elementos);
+            ArrayAdapter adp = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, elementos);
 
             spReta.setAdapter(adp);
+        }catch (Exception e){
 
+        }
 
 
 

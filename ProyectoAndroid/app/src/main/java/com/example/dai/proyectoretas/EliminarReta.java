@@ -26,7 +26,7 @@ public class EliminarReta extends AppCompatActivity {
         folElim=(EditText)findViewById(R.id.etFolioEliminar);
 
         try{
-
+            //Se utiliza un admin para llenar el Spinner
             AdminSQLiteOpenHelper2 adminR= new AdminSQLiteOpenHelper2(this,"adminR",null,1);
             SQLiteDatabase db = adminR.getWritableDatabase();
             Bundle bundle= this.getIntent().getExtras();
@@ -58,6 +58,10 @@ public class EliminarReta extends AppCompatActivity {
     }
 
     public void eliminaReta(View v){
+        /*
+        El usuario ingresa el folio de la reta que desea eliminar y por medio de
+        SQLite la elimina.
+        */
         AdminSQLiteOpenHelper2 adminR=new AdminSQLiteOpenHelper2(this,"adminR", null, 1);
         SQLiteDatabase db=adminR.getWritableDatabase();
         String folio=folElim.getText().toString();

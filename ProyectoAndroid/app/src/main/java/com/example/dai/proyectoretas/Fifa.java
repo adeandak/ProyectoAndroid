@@ -11,6 +11,6 @@ public class Fifa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fifa);
         WebView web=(WebView)findViewById(R.id.webView1);
-        web.loadUrl("https://es.fifa.com/");
+        web.loadUrl("https://www.fifa.com/");
     }
 }
